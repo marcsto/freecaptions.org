@@ -37,6 +37,11 @@
 
 <body class="min-h-screen py-8 px-4">
 
+    <div id="compatibility-warning" class="hidden fixed top-0 left-0 right-0 bg-yellow-400 border-b-2 border-yellow-600 text-black p-4 text-center z-50 shadow-lg">
+        <p id="compatibility-message" class="inline font-semibold"></p>
+        <button id="close-warning" class="ml-4 font-bold text-lg" aria-label="Close warning">&times;</button>
+    </div>
+
     <header class="text-center mb-12 relative">
         <div class="relative z-10">
             <div class="flex items-center justify-center gap-3 mb-4">
@@ -477,6 +482,32 @@
         </div>
     </footer>
 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const warningBanner = document.getElementById('compatibility-warning');
+            const warningMessage = document.getElementById('compatibility-message');
+            const closeButton = document.getElementById('close-warning');
+
+            if (!warningBanner || !warningMessage || !closeButton) return;
+
+            const ua = navigator.userAgent;
+            const isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+            const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+
+            if (isIOS) {
+                warningMessage.textContent = "Warning: FreeCaptions is not yet fully supported on iOS. For the best experience, please use a laptop, desktop, Chromebook, or Android device.";
+                warningBanner.classList.remove('hidden');
+            } else if (isSafari) {
+                warningMessage.textContent = "Warning: FreeCaptions is not yet fully supported on Safari. For the best experience, please use Google Chrome.";
+                warningBanner.classList.remove('hidden');
+            }
+
+            closeButton.addEventListener('click', function() {
+                warningBanner.classList.add('hidden');
+            });
+        });
+    </script>
 
     <script>
         // Karaoke style caption animation
