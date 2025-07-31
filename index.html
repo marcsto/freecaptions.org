@@ -583,7 +583,19 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
     <script type="module" src="js/video-ui.js"></script>
-    
+
+    <script>
+        document.addEventListener('click', function(event) {
+            const button = event.target.closest('button');
+            if (!button || typeof gtag === 'undefined') return;
+            const label = button.id || button.getAttribute('aria-label') || button.textContent.trim();
+            gtag('event', 'button_click', {
+                event_category: 'Button',
+                event_label: label
+            });
+        });
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
     <script>eruda.init();</script>
 </body>
