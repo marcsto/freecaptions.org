@@ -23,6 +23,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8254671999909661" crossorigin="anonymous"></script>
 </head>
 
 <!-- Google tag (gtag.js) -->
@@ -106,6 +107,28 @@
                         Get Captions
                     </span>
                 </label>
+                <div class="mb-4">
+                    <label for="model-select" class="block text-sm font-medium text-gray-700 mb-2">Whisper Model</label>
+                    <select id="model-select" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <optgroup label="English-only">
+                            <option value="Xenova/whisper-tiny.en" selected>Fast (English)</option>
+                            <option value="Xenova/whisper-base.en">Accurate (English)</option>
+                            <option value="Xenova/whisper-small.en">Very Accurate (English)</option>
+                            <!-- <option value="distil-whisper/distil-medium.en">Medium (English, Distilled)</option> -->
+                            <!-- Larger models run out of memory. Should investigate getting distilled models running. Also transformers v3 lib could help with gpu -->
+                        </optgroup>
+                        <optgroup label="Multilingual">
+                            <option value="Xenova/whisper-tiny">Fast (Multilingual)</option>
+                            <option value="Xenova/whisper-base">Accurate (Multilingual)</option>
+                            <option value="Xenova/whisper-small">Very Accurate (Multilingual)</option>
+                            <!-- <option value="distil-whisper/distil-large-v3">Large (Multilingual, Distilled)</option> -->
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="mb-4 flex items-center">
+                    <input type="checkbox" id="translate-checkbox" class="mr-2">
+                    <label for="translate-checkbox" class="text-sm font-medium text-gray-700">Translate to English</label>
+                </div>
                 <div class="flex gap-4">
                     <button id="auto-captions-btn" class="flex-1 btn-primary text-white font-semibold py-2 px-4 rounded-lg animate-pulse flex items-center justify-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-magic">
@@ -460,6 +483,24 @@
                             <p class="feature-desc-text mt-1">Up to 85% of videos are watched on mute. Captions ensure your message gets across and boosts engagement.</p>
                         </div>
                     </div>
+                    <div class="flex items-start space-x-4 p-6 bg-slate-800 rounded-2xl">
+                        <div class="flex-shrink-0 h-10 w-10 flex items-center justify-center bg-green-500/20 rounded-full">
+                            <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        </div>
+                        <div>
+                            <h5 class="text-lg font-semibold text-white">99 Languages Supported</h5>
+                            <p class="feature-desc-text mt-1">Transcribe videos in English, Spanish, French, German, Mandarin Chinese, Hindi, Japanese, Arabic, Portuguese, Russian, Italian, and 88 more languages.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4 p-6 bg-slate-800 rounded-2xl">
+                        <div class="flex-shrink-0 h-10 w-10 flex items-center justify-center bg-green-500/20 rounded-full">
+                            <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        </div>
+                        <div>
+                            <h5 class="text-lg font-semibold text-white">Automatic Translation</h5>
+                            <p class="feature-desc-text mt-1">Automatically translate captions from any language to English with just one click. Perfect for international content creators.</p>
+                        </div>
+                    </div>
                     
                 </div>
                  <div class="mt-12 text-center">
@@ -577,6 +618,21 @@
             const videoUpload = document.getElementById('video-upload');
             if (videoUpload) {
                 videoUpload.click();
+            }
+        });
+
+        // Handle translate checkbox - switch to multilingual model when translation is enabled
+        document.addEventListener('DOMContentLoaded', function() {
+            const translateCheckbox = document.getElementById('translate-checkbox');
+            const modelSelect = document.getElementById('model-select');
+            
+            if (translateCheckbox && modelSelect) {
+                translateCheckbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        // Switch to "Very Accurate (Multilingual)" when translation is enabled
+                        modelSelect.value = 'Xenova/whisper-small';
+                    }
+                });
             }
         });
     </script>
