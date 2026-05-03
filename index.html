@@ -518,7 +518,7 @@
             <p>&copy; 2025 FreeCaptions.org. All Rights Reserved.</p>
             <p class="text-sm mt-2">Built by Marc Stogaitis.</p>
             <p class="text-sm mt-2">
-                <a href="https://github.com/marcsto/freecaptions.org/issues/new" class="underline">Report issues on GitHub</a>
+                <a href="https://tally.so/r/RG8J2Q" id="feedback-link" class="underline" target="_blank" rel="noopener noreferrer">Send Feedback</a>
             </p>
         </div>
     </footer>
@@ -603,6 +603,21 @@
 
         runStyleDemo();
         setInterval(runStyleDemo, 3000);
+
+        function openFeedbackForm(event) {
+            event.preventDefault();
+
+            const encodedUserAgent = encodeURIComponent(navigator.userAgent);
+            const encodedResolution = encodeURIComponent(`${window.innerWidth}x${window.innerHeight}`);
+            const feedbackUrl = `https://tally.so/r/RG8J2Q?userAgent=${encodedUserAgent}&resolution=${encodedResolution}`;
+
+            window.open(feedbackUrl, '_blank', 'noopener,noreferrer');
+        }
+
+        const feedbackLink = document.getElementById('feedback-link');
+        if (feedbackLink) {
+            feedbackLink.addEventListener('click', openFeedbackForm);
+        }
 
         // CTA button functionality
         document.getElementById('upload-video-link').addEventListener('click', function(event) {
