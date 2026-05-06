@@ -26,16 +26,44 @@ body {
     background-color: rgba(0,0,0,0.2) !important;
     color: #f3f4f6 !important;
     border-color: #4b5563 !important;
+    color-scheme: dark;
 }
 
 .glass-card input[type="text"]:focus,
-.glass-card input[type="number"]:focus,
-.glass-card select:focus {
+.glass-card input[type="number"]:focus {
     background-color: rgba(0,0,0,0.3) !important;
     border-color: #3b82ff !important;
     outline: none;
     box-shadow: none;
     --tw-ring-color: transparent;
+}
+
+.glass-card select:focus,
+.glass-card select:active {
+    background-color: rgba(29, 78, 216, 0.22) !important;
+    border-color: #3b82ff !important;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 255, 0.35);
+    --tw-ring-color: transparent;
+}
+
+.glass-card select optgroup,
+.glass-card select option {
+    background-color: #111827;
+    color: #f3f4f6;
+}
+
+.glass-card select optgroup {
+    font-weight: 700;
+}
+
+.glass-card select option {
+    font-weight: 400;
+}
+
+.glass-card select option:checked {
+    background: linear-gradient(135deg, #2563eb, #2563eb);
+    color: #ffffff;
 }
 
 .loader {

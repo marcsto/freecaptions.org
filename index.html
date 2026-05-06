@@ -108,7 +108,7 @@
                     </span>
                 </label>
                 <div class="mb-4">
-                    <label for="model-select" class="block text-sm font-medium text-gray-700 mb-2">Whisper Model</label>
+                    <label for="model-select" class="block text-sm font-medium text-gray-700 mb-2">Model</label>
                     <select id="model-select" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                         <optgroup label="English-only">
                             <option value="Xenova/whisper-tiny.en" selected>Fast (English)</option>
@@ -122,6 +122,11 @@
                             <option value="Xenova/whisper-base">Accurate (Multilingual)</option>
                             <option value="Xenova/whisper-small">Very Accurate (Multilingual)</option>
                             <!-- <option value="distil-whisper/distil-large-v3">Large (Multilingual, Distilled)</option> -->
+                        </optgroup>
+                        <optgroup label="Experimental">
+                            <option value="onnx-community/moonshine-tiny-ONNX">Moonshine Fast-Accurate (English)</option>
+                            <option value="onnx-community/moonshine-base-ONNX">Moonshine Very-Accurate (English)</option>
+                            <option value="moonshine-ultra">Moonshine Ultra (English)</option>
                         </optgroup>
                     </select>
                 </div>
@@ -515,7 +520,7 @@
     <!-- Footer -->
     <footer class="py-12">
         <div class="container mx-auto px-4 text-center text-slate-500">
-            <p>&copy; 2025 FreeCaptions.org. All Rights Reserved.</p>
+            <p>&copy; 2026 FreeCaptions.org. All Rights Reserved.</p>
             <p class="text-sm mt-2">Built by Marc Stogaitis.</p>
             <p class="text-sm mt-2">
                 <a href="https://tally.so/r/RG8J2Q" id="feedback-link" class="underline" target="_blank" rel="noopener noreferrer">Send Feedback</a>
@@ -636,8 +641,8 @@
             }
         });
 
-        // Handle translate checkbox - switch to multilingual model when translation is enabled
-        document.addEventListener('DOMContentLoaded', function() {
+        // Keep translation on a multilingual model.
+        (function() {
             const translateCheckbox = document.getElementById('translate-checkbox');
             const modelSelect = document.getElementById('model-select');
             
@@ -649,7 +654,7 @@
                     }
                 });
             }
-        });
+        })();
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
