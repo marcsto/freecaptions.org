@@ -66,6 +66,57 @@ body {
     color: #ffffff;
 }
 
+.language-combobox {
+    position: relative;
+}
+
+.language-combobox__list {
+    position: absolute;
+    z-index: 40;
+    top: calc(100% + 0.375rem);
+    left: 0;
+    right: 0;
+    max-height: 16rem;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0.25rem;
+    list-style: none;
+    background: #111827;
+    border: 1px solid #4b5563;
+    border-radius: 0.5rem;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+}
+
+.language-combobox__option,
+.language-combobox__empty {
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    color: #f3f4f6;
+    font-size: 0.95rem;
+    line-height: 1.25rem;
+}
+
+.language-combobox__option {
+    cursor: pointer;
+}
+
+.language-combobox__option:hover,
+.language-combobox__option--highlighted,
+.language-combobox__option[aria-selected="true"] {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.language-combobox__separator {
+    height: 1px;
+    margin: 0.25rem 0.5rem;
+    background: #374151;
+}
+
+.language-combobox__empty {
+    color: #9ca3af;
+}
+
 .loader {
     border-top-color: #3498db;
     animation: spin 1s linear infinite;
