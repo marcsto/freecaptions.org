@@ -204,6 +204,7 @@
                                             <option value="word-by-word" >One word at a time</option>
                                             <option value="two-lines-active-colored" >Two lines, active-line is colored</option>
                                             <option value="three-words-active-colored" selected>Three words, colored active-word</option>
+                                            <option value="custom-words-active-colored">Custom word count, colored active-word</option>
                                             <option value="three-words-highlight-box">Three words, box-highlight active-word</option>
                                             </select>
                                     </div>
@@ -226,6 +227,16 @@
                                             <input type="range" id="custom-y-slider" min="0" max="100" value="65"
                                                 class="flex-1 range-slider">
                                             <input type="number" id="custom-y-input" min="0" max="100" value="65"
+                                                class="w-20 px-3 py-2 border border-gray-300 rounded-lg text-center">
+                                        </div>
+                                    </div>
+
+                                    <div id="custom-word-count-container" class="hidden">
+                                        <label for="custom-word-count-slider" class="block text-sm font-medium text-gray-700 mb-2">Words Shown</label>
+                                        <div class="flex items-center space-x-3">
+                                            <input type="range" id="custom-word-count-slider" min="1" max="12" value="5"
+                                                class="flex-1 range-slider">
+                                            <input type="number" id="custom-word-count-input" min="1" max="12" value="5"
                                                 class="w-20 px-3 py-2 border border-gray-300 rounded-lg text-center">
                                         </div>
                                     </div>
@@ -307,12 +318,22 @@
                                             <span class="ml-2 text-gray-700">Bold</span>
                                         </label>
                                     </div>
+                                    <div>
+                                        <label for="all-caps" class="block text-sm font-medium text-gray-700 mb-2">Capitalization</label>
+                                        <label class="inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" id="all-caps" checked class="form-checkbox h-5 w-5 text-blue-600">
+                                            <span class="ml-2 text-gray-700">All caps</span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Captions Tab Content -->
                         <div id="captions-content" class="tab-content hidden">
+                            <div class="caption-editor-toolbar">
+                                <button id="add-manual-caption-btn" type="button" class="caption-add-btn">+ Add missing text</button>
+                            </div>
                             <div id="captions-editor-container" class="space-y-4 max-h-[50vh] overflow-y-auto pr-2">
                                 <!-- Caption editor will be rendered here by JavaScript -->
                                 <p class="text-gray-500">Upload a video to see caption data.</p>
